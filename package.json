@@ -1,0 +1,8 @@
+{
+  "name": "sistemaescolar",
+  "version": "1.0.0",
+  "description": "Sistema escolar",
+  "main": "index.js",
+  "author": "Cirilo25",
+  "license": "MIT"
+}
