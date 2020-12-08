@@ -16,7 +16,7 @@ $app->addErrorMiddleware(true, false, false);
 
 // Add route callbacks
 $app->get('/', function (Request $request, Response $response, array $args) {
-    $response->getBody()->write('Hello World!');
+    $response->getBody()->write('Hola Mundo!');
     return $response;
 });
 
