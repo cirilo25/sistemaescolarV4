@@ -29,6 +29,8 @@ $app->post('/login/{usuario}', function (request $request, Response $response, a
     ->where('usuarios.nombreusuario', $data->usuario)
     ->first();
 
+    $msg = new stdClass();
+
     if ($user->password = $data->password){
 
     }
