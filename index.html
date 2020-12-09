@@ -17,16 +17,18 @@
                     <h1>Sistema Escolar</h1>
                 </div>
 
-                <form action="" method="POST">
+                <form action="api/index.php/login" method="POST">
 
                     <div class="field">
                         <label class="label" for="usuario">usuario </label>
                         <input class="input" type="text" id="usuario" name="usuario">
                     </div>
+
                     <div class="field">
                         <label class="label" for="password">password </label>
                         <input class="input" type="password" id="password" name="password">
                     </div>
+
                     <div class="field">
                         <div class="control">
                             <input class="button" type="button" value="enviar" onclick="login()">
@@ -40,11 +42,19 @@
     <script>
 
     function login(){
+
         axios.post('api/index.php/login/'+ document.forms[0].usuario.value, {
+
             usuario: document.forms[0].usuario.value,
-            password: document.forms[0].password.value
+            password: document.forms[0].password.value,
         }).then(resp => {
-        console.log(resp);
+            if(resp.data.aceptado){
+                alert("BIENVENIDO AL SISTEMA!!")
+                setTimeout("location.href='inicio.php?idusuario=${resp.data.idusuario}'", 500)
+            }
+            else{
+                alert('Nombre de usuario y/o contraseña incorrectos\n intenta de nuevo!! :)')
+            }
      }).catch(error => {
          console.log(error)
      })

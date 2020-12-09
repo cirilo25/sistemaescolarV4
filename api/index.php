@@ -16,7 +16,7 @@ $app->addErrorMiddleware(true, false, false);
 
 // Add route callbacks
 $app->get('/', function (Request $request, Response $response, array $args) {
-    $response->getBody()->write('HOLAAAA!');
+    $response->getBody()->write('Hola Mundo!');
     return $response;
 });
 
@@ -26,16 +26,32 @@ $app->post('/login/{usuario}', function (request $request, Response $response, a
 
     $user = DB::table('usuarios')
     ->leftJoin('perfiles', 'usuarios.idperfil', '=', 'perfiles.idperfil')
-    ->where('usuarios.nombreusuario', $data->usuario)
+    ->where('usuarios.nombreusuario', $args['usuario'])
     ->first();
 
     $msg = new stdClass();
 
-    if ($user->password = $data->password){
-
+    if ($user->password == $data->password){
+        $msg->aceptado = true;
+        $msg->nombreperfil = $user->nombreperfil;
+        $msg->idusuario = $user->idusuario;
+    } else {
+        $msg->aceptado = false;
     }
 
-    $response->getBody()->write(json_encode($user));
+    $response->getBody()->write(json_encode($msg));
+    return $response;
+});
+
+$app->post('/insertar', function (Request $request, Response $response, array $args){
+
+    $data = json_decode($request->getBody()->getContents(), false);    
+
+    DB::table('calificaciones')->insert(
+        ['calificacion' => $data->calificacion],
+    );
+   
+    $response->getBody()->write(json_encode($msg));
     return $response;
 });
 
