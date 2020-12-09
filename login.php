@@ -13,7 +13,7 @@ if ($user->password == $_POST['password']) {
     $mensaje = "<h1> BIENVENIDO: {$user->nombreperfil} {$user->nombreusuario}</h1>
     <br><a href='inicio.php?idusuario = {$user->idusuario}'>entra al sistema escolar </a>";
 } else {
-    $mensaje= "<h1> USUARIO Y/O CONTRASEÑA INCORRECTOS, POR FAVOR VERIFICQUE Y VUELVA A INTENTAR :)</h1>
+    $mensaje= "<h1> USUARIO Y/O CONTRASEÑA INCORRECTOS, POR FAVOR VERIFIQUE Y VUELVA A INTENTAR :)</h1>
     <br><a href='index.html'>Regresar </a>";
 }
 
