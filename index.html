@@ -43,7 +43,8 @@
 
     function login(){
 
-        axios.post('api/index.php/login/${document.forms[0].usuario.value}', {
+        axios.post('api/index.php/login/'+ document.forms[0].usuario.value, {
+
             usuario: document.forms[0].usuario.value,
             password: document.forms[0].password.value,
         }).then(resp => {

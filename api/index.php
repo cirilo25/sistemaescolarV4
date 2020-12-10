@@ -43,18 +43,19 @@ $app->post('/login/{usuario}', function (request $request, Response $response, a
     return $response;
 });
 
-$app->post('/insertar', function (Request $request, Response $response, array $args){
+$app->post('/insertar/{cal}', function (Request $request, Response $response, array $args){
 
     $data = json_decode($request->getBody()->getContents(), false);    
-
-    DB::table('calificaciones')->insert(
-        ['calificacion' => $data->calificacion],
-    );
-   
+    $id = DB::table('calificaciones')->insertGetId([
+        'calificacion' => $data['calificacion'],
+        'nombrealumno'=> $data ['id_alumno'],
+        'nombre' => $data ['id_asignatura'],
+        ]);
+    $msg = new stdClass();
+    $msg->aceptado = empty($id)? false : true;  
     $response->getBody()->write(json_encode($msg));
     return $response;
 });
-
 
 // Run application
 $app->run();
