@@ -40,6 +40,21 @@ $app->post('/login/{usuario}', function (request $request, Response $response, a
     }
 
     $response->getBody()->write(json_encode($msg));
+<<<<<<< HEAD
+=======
+    return $response;
+});
+
+$app->post('/insertar', function (Request $request, Response $response, array $args){
+
+    $data = json_decode($request->getBody()->getContents(), false);    
+
+    DB::table('calificaciones')->insert(
+        ['calificacion' => $data->calificacion],
+    );
+   
+    $response->getBody()->write(json_encode($msg));
+>>>>>>> 4439301071948eedb27228cb2906741a9ee2c8f4
     return $response;
 });
 
